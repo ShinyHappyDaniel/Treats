@@ -69,6 +69,32 @@
       display: block;
     }
 
+    /* Perks logo — HTML/CSS text with em-based dot */
+    .panel--perks .panel__logo {
+      width: auto;
+    }
+    .perks-logo {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 0.82;
+      font-feature-settings: "ss01";
+      color: #1f1a14;
+      display: inline-flex;
+      align-items: flex-end;
+      white-space: nowrap;
+      font-size: clamp(52px, 5.5vw, 82px);
+    }
+    .perks-logo .dot {
+      width: 0.2em;
+      height: 0.2em;
+      border-radius: 50%;
+      background: #f26a4f;
+      margin-left: 0.035em;
+      margin-bottom: 0.06em;
+      flex: none;
+    }
+
     /* Dividers */
     .panel + .panel {
       border-left: 1px solid rgba(255,255,255,0.12);
@@ -141,13 +167,7 @@
     <!-- PERKS -->
     <a class="panel panel--perks" href="perks-brand-guidelines/" aria-label="Perks brand guidelines">
       <div class="panel__logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 130" role="img" aria-label="perks">
-          <defs>
-            <style>@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600&display=block');</style>
-          </defs>
-          <text x="6" y="98" font-family="'Bricolage Grotesque', system-ui, sans-serif" font-weight="600" font-size="110" letter-spacing="-5" fill="#1f1a14" style="font-feature-settings:'ss01';">perks</text>
-          <circle cx="258" cy="90" r="13" fill="#f26a4f"/>
-        </svg>
+        <span class="perks-logo">perks<i class="dot"></i></span>
       </div>
     </a>
 
