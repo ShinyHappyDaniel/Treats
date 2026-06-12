@@ -1,0 +1,157 @@
+/* ============================================================
+   Kindly Gåvokort — Jewel & foil + mottagarkort
+   ============================================================ */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: #FBF7ED; color: #2B1A1E;
+  font-family: 'Inclusive Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
+p { margin: 0; text-wrap: pretty; }
+
+.klogo {
+  display: block; width: var(--w, 92px); height: calc(var(--w, 92px) / 2.937);
+  -webkit-mask: url('assets/kindly-logo.svg') no-repeat left center / contain;
+  mask: url('assets/kindly-logo.svg') no-repeat left center / contain;
+}
+
+/* ---------- Page chrome ---------- */
+.site-head {
+  max-width: 1280px; margin: 0 auto; padding: 30px 32px 22px;
+  display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #EAE1CF;
+}
+.site-head .crumb { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9A8A72; }
+
+.intro { max-width: 1280px; margin: 0 auto; padding: 52px 32px 0; }
+.intro h1 { font-size: 46px; font-weight: 800; max-width: 16ch; }
+.intro p { margin-top: 16px; color: #7A6A5C; max-width: 560px; font-size: 17px; line-height: 1.6; }
+
+section.block { padding: 60px 0 8px; }
+.block-head { max-width: 1280px; margin: 0 auto; padding: 0 32px 8px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #B89C63; margin-bottom: 8px; }
+.block-head h2 { font-size: 30px; font-weight: 700; }
+.block-head p { margin-top: 10px; color: #7A6A5C; max-width: 640px; font-size: 16px; line-height: 1.55; }
+
+.tier-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 36px; padding: 40px 24px 0; }
+.recip-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 120px 260px; padding: 56px 24px 0; }
+
+.fig { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.fig figcaption { margin-top: 26px; text-align: center; display: flex; flex-direction: column; gap: 5px; max-width: 440px; }
+.fig figcaption strong { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 17px; color: #2B1A1E; }
+.fig figcaption span { font-size: 14px; color: #9A8A72; }
+
+.site-foot { border-top: 1px solid #EAE1CF; margin-top: 64px; padding: 28px 0 56px; }
+.site-foot p { max-width: 1280px; margin: 0 auto; padding: 0 32px; font-size: 14px; color: #9A8A72; }
+
+/* ============================================================
+   Jewel & foil — nivåkort
+   ============================================================ */
+.gk-card {
+  position: relative; width: 480px; height: 303px; border-radius: 20px; overflow: hidden;
+  font-family: 'Inclusive Sans', system-ui, sans-serif;
+  box-shadow: 0 2px 4px rgba(43,26,30,.06), 0 24px 48px -20px rgba(43,26,30,.35);
+}
+.gk-jewel-inner { position: absolute; inset: 0; padding: 26px 30px; display: flex; flex-direction: column; justify-content: space-between; z-index: 3; }
+.gk-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.gk-bottom { align-items: flex-end; }
+.gk-jewel-mid { display: flex; flex-direction: column; gap: 8px; }
+.gk-tiername { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 52px; line-height: 1.1; letter-spacing: -0.03em; margin: 0; }
+.gk-desc { font-size: 14.5px; line-height: 1.45; margin: 0; max-width: 360px; text-wrap: pretty; color: rgba(242,235,220,.82); }
+.gk-meta { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; color: rgba(242,235,220,.65); }
+.gk-chip-foil {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.16em; padding: 7px 13px; border-radius: 999px; color: #3B2E14;
+  background: linear-gradient(110deg, #A8884F 0%, #D9C08A 28%, #F4E7C3 50%, #D9C08A 72%, #A8884F 100%);
+  background-size: 220% 100%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 1px 3px rgba(0,0,0,.25); white-space: nowrap;
+}
+.gk-foiltext {
+  background: linear-gradient(105deg, #B89A5E 0%, #E8D5A0 22%, #FBF3DA 42%, #D9C08A 60%, #9C7E44 85%, #C7AC6E 100%);
+  background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding: 0.18em 0.2em 0.24em 0.1em; margin: -0.18em -0.2em -0.24em -0.1em;
+}
+.gk-foil-frame { position: absolute; inset: 11px; border-radius: 12px; border: 1px solid rgba(232,213,160,.5); z-index: 2; pointer-events: none; }
+.gk-sheen { position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(130% 110% at 18% -12%, rgba(255,255,255,.16) 0%, transparent 52%), radial-gradient(90% 80% at 105% 115%, rgba(0,0,0,.22) 0%, transparent 55%); }
+.gk-shimmer { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,248,225,.22) 47%, rgba(255,252,240,.38) 50%, rgba(255,248,225,.22) 53%, transparent 62%);
+  background-size: 320% 100%; background-position: 110% 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .gk-shimmer { animation: gk-sweep 5.5s cubic-bezier(.4,0,.2,1) infinite; }
+  .gk-foiltext, .gk-chip-foil { animation: gk-foil 7s ease-in-out infinite; }
+}
+@keyframes gk-sweep { 0%, 55% { background-position: 110% 0; } 85%, 100% { background-position: -110% 0; } }
+@keyframes gk-foil { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
+
+/* ============================================================
+   Mottagarkort — band & rosett (öppningsbart)
+   ============================================================ */
+.gkr-stage { width: 440px; height: 300px; perspective: 1700px; }
+.gkr-stack {
+  position: relative; width: 100%; height: 100%; transform-style: preserve-3d; cursor: pointer;
+  border-radius: 20px; filter: drop-shadow(0 24px 42px rgba(31,26,20,.3)); outline: none;
+}
+.gkr-stack:focus-visible { box-shadow: 0 0 0 3px rgba(0,119,142,.4); border-radius: 22px; }
+.gkr-inside {
+  position: absolute; inset: 0; z-index: 0; transform: translateZ(-2px); border-radius: 20px; overflow: hidden;
+  background: linear-gradient(158deg, #FBF5E6 0%, #F0E5CD 100%);
+  padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: inset 0 2px 16px rgba(43,26,30,.12), inset 0 0 0 1px rgba(43,26,30,.05);
+}
+.gkr-door {
+  position: absolute; top: 0; width: 50%; height: 100%; z-index: 2; transform-style: preserve-3d;
+  transition: transform 1.05s linear(0, 0.25 9%, 0.62 18.7%, 0.99 28.9%, 1.19 38.6%, 1.13 48.4%, 0.96 62.5%, 1.03 78%, 1);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) { .gkr-door { transition: transform .3s ease; } }
+.gkr-door-l { left: 0; transform-origin: left center; transform: rotateY(0deg); }
+.gkr-door-r { right: 0; transform-origin: right center; transform: rotateY(0deg); }
+.gkr-stack.is-open .gkr-door-l { transform: rotateY(-118deg); }
+.gkr-stack.is-open .gkr-door-r { transform: rotateY(118deg); }
+.gkr-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; background: linear-gradient(135deg, #00778E 0%, #015C6E 100%); }
+.gkr-door-l .gkr-face { border-radius: 20px 0 0 20px; }
+.gkr-door-r .gkr-face { border-radius: 0 20px 20px 0; }
+.gkr-back { transform: rotateY(180deg); background: linear-gradient(135deg, #015C6E 0%, #013D49 120%); }
+.gkr-pattern { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.gkr-pattern.pat-stripe { background-image: repeating-linear-gradient(45deg, rgba(242,235,220,.11) 0 6px, transparent 6px 17px); }
+.gkr-pattern.pat-waves { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='18'%3E%3Cpath d='M0 9 Q15 0 30 9 T60 9' fill='none' stroke='%23F2EBDC' stroke-opacity='0.2' stroke-width='1.4'/%3E%3C/svg%3E"); background-size: 60px 18px; }
+.gkr-frame { position: absolute; z-index: 2; pointer-events: none; border: 1px solid rgba(232,213,160,.45); }
+.gkr-frame-l { top: 11px; left: 11px; bottom: 11px; right: 0; border-right: none; border-radius: 10px 0 0 10px; }
+.gkr-frame-r { top: 11px; right: 11px; bottom: 11px; left: 0; border-left: none; border-radius: 0 10px 10px 0; }
+.gkr-shimmer { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,248,225,.18) 47%, rgba(255,252,240,.3) 50%, rgba(255,248,225,.18) 53%, transparent 62%);
+  background-size: 320% 100%; background-position: 110% 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .gkr-shimmer { animation: gkr-sweep 6s cubic-bezier(.4,0,.2,1) infinite; }
+  .gkr-shimmer-2 { animation-delay: 1.2s; }
+}
+@keyframes gkr-sweep { 0%, 55% { background-position: 110% 0; } 85%, 100% { background-position: -110% 0; } }
+.gkr-ribbon {
+  position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  background: url('assets/ribbon.png') center / 100% 100% no-repeat;
+  filter: drop-shadow(0 5px 9px rgba(31,26,20,.22));
+  transition: opacity .45s ease, transform .6s cubic-bezier(.4,0,.2,1);
+}
+.gkr-stack.is-open .gkr-ribbon { opacity: 0; transform: scale(1.06) translateY(-10px); }
+.gkr-dc { position: absolute; inset: 0; padding: 24px 26px; display: flex; z-index: 3; }
+.gkr-dc-l { align-items: flex-end; justify-content: flex-start; }
+.gkr-dc-r { align-items: flex-end; justify-content: flex-end; }
+.gkr-hint { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: rgba(242,235,220,.85); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.gkr-arrow { font-size: 13px; }
+.gkr-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.gkr-bottom { align-items: flex-end; }
+.gkr-note-mid { display: flex; flex-direction: column; gap: 6px; }
+.gkr-note-title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; margin: 0; color: #015C6E; }
+.gkr-note-greeting { font-size: 14px; font-style: italic; line-height: 1.5; margin: 0; max-width: 330px; color: #6A5A4C; text-wrap: pretty; }
+.gkr-note-sender { font-size: 9.5px; font-weight: 600; letter-spacing: 0.15em; color: #A8967C; margin: 4px 0 0; }
+.gkr-code { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.07em; color: #2B1A1E; }
+.gkr-valid { display: block; margin-top: 4px; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; color: #A8967C; }
+.gkr-chip-ink { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; padding: 6px 12px; border-radius: 999px; color: #015C6E; border: 1.5px solid rgba(0,119,142,.34); background: rgba(255,255,255,.5); white-space: nowrap; }
+.gkr-qr { display: grid; grid-template-columns: repeat(9, 1fr); gap: 1px; border-radius: 6px; box-sizing: border-box; flex: none; }
+.gkr-qr span { border-radius: 1px; }
+
+@media (max-width: 560px) {
+  .intro h1 { font-size: 34px; }
+  .gk-card, .gkr-stage { zoom: 0.7; }
+}
